@@ -1,0 +1,13 @@
+---
+EnableDefaultLinters: true
+linters:
+  Rubocop:
+    enabled: false
+    rubocop_config:
+      require: standard
+      inherit_gem:
+        standard: config/base.yml
+      AllCops:
+        DisabledByDefault: true
+  ErbSafety:
+    enabled: true
