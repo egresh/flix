@@ -1,0 +1,11 @@
+<h1><%= pluralize(@users.count, "user") %></h1>
+<% @users.each do |u| %>
+  <ul>
+    <li>
+      <%= u.name %>
+    </li>
+    <li>
+      <%= u.email %>
+    </li>
+  </ul>
+<% end %>

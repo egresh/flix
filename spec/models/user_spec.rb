@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
   it "is invalid without a password confirmation" do
     u = FactoryBot.build(:user, password_confirmation: "")
     u.valid?
-    expect(u.errors[:password_confirmation]).to include("can't be blank")
+    expect(u.errors[:password_confirmation]).to eq("can't be blank")
   end
 
   it "requires the password and password_confirmation to match" do
