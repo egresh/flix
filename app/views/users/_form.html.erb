@@ -1,13 +1,18 @@
 <%= render "shared/errors", object: user %>
-
 <%= form_with(model: user, local: true) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name, autofocus: true %>
   <%= f.label :email %>
   <%= f.text_field :email %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
   <%= f.label :password %>
   <%= f.password_field :password %>
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
-  <%= f.submit "Update Account" %>
+  <% if user.new_record? %>
+    <%= f.submit "Create Account" %>
+  <% else %>
+    <%= f.submit "Update Account" %>
+  <% end %>
 <% end %>

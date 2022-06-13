@@ -1,4 +1,8 @@
 class MoviesController < ApplicationController
+  # must be signed in as an admin to mutate
+  before_action :require_signin, except: [:index, :show]
+  before_action :require_admin, except: [:index, :show]
+
   def index
     @movies = Movie.released
   end

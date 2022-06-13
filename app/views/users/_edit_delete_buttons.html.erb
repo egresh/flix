@@ -1,0 +1,8 @@
+<div class="actions">
+  <% if current_user_admin? %>
+    <%= link_to("Delete Account", user_path(@user), method: :delete, data: {confirm: "Are you sure?"}, class: "button delete") %>
+  <% end %>
+  <% if @user == current_user %>
+    <%= link_to("Edit Account", edit_user_path(@user), class: "button edit") %>
+  <% end %>
+</div>

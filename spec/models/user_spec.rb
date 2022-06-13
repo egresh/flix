@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
+  context "Associations" do
+    it { should have_many(:reviews).dependent(:destroy) }
+  end
+
+  context "Validations" do
+    it { should have_secure_password }
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:username) }
+  end
+
   it "is valid with email, name, password, and password_confirmation attributes" do
     u = FactoryBot.build(:user)
     u.valid?
@@ -30,7 +41,7 @@ RSpec.describe User, type: :model do
   it "is invalid without a password confirmation" do
     u = FactoryBot.build(:user, password_confirmation: "")
     u.valid?
-    expect(u.errors[:password_confirmation]).to eq("can't be blank")
+    expect(u.errors[:password_confirmation]).to include("is blank")
   end
 
   it "requires the password and password_confirmation to match" do

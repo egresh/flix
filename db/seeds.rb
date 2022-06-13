@@ -175,8 +175,41 @@ Movie.create!([
   }
 ])
 
-movie = Movie.find_by(title: "Captain Marvel")
+User.create!([
+  {
+    name: 'Moe',
+    email: 'moe@example.com',
+    username: 'moe',
+    admin: false,
+    password: 'secret',
+    password_confirmation: 'secret'
+  },
+  {
+    name: 'Larry',
+    email: 'larry@example.com',
+    username: 'larry',
+    admin: false,
+    password: 'secret',
+    password_confirmation: 'secret'
+  },
+  {
+    name: 'Curly',
+    email: 'curly@example.com',
+    username: 'curly',
+    admin: true,
+    password: 'secret',
+    password_confirmation: 'secret'
+  }
+])
 
-movie.reviews.create!(name: "Larry", stars: 5, comment: "Awesome!")
-movie.reviews.create!(name: "Daisy", stars: 4, comment: "Great!")
-movie.reviews.create!(name: "Moe", stars: 3, comment: "Spilled my popcorn!")
+movie1 = Movie.find_by!(title: "Captain Marvel")
+movie2 = Movie.find_by!(title: "Black Panther")
+movie3 = Movie.find_by!(title: "Avengers: Endgame")
+
+
+movie1.reviews.create!(stars: 5, comment: "Awesome!", user: User.first)
+movie1.reviews.create!(stars: 4, comment: "Great!", user: User.first)
+movie2.reviews.create!(stars: 3, comment: "Spilled my popcorn!", user: User.last)
+movie3.reviews.create!(stars: 1, comment: "Ugh, sucked!", user: User.second)
+
+
