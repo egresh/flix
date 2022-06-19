@@ -1,4 +1,12 @@
 module MoviesHelper
+  def nav_link_to(link_text, link_path)
+    if current_page?(link_path)
+      link_to link_text, link_path, class: "active"
+    else
+      link_to link_text, link_path
+    end
+  end
+
   def total_gross(movie)
     if movie.flop?
       "Flop!"
@@ -15,24 +23,7 @@ module MoviesHelper
     if movie.average_stars.zero?
       content_tag(:strong, "No reviews")
     else
-      pluralize(number_with_precision(movie.average_stars, precision: 1) , "star")
-    end
-  end
-
-  def admin_buttons
-    if current_user_admin?
-      text = ''
-      edit = link_to("Edit", edit_movie_path(@movie), class: 'button')
-      delete = link_to("Delete", movie_path(@movie), class: "button", method: :delete, data: { confirm: 'Are you sure?' })
-
-      text = <<~"EOC"
-        <section class="admin">
-          #{edit}
-          #{delete}
-        </section>
-      EOC
-
-      text.html_safe
+      pluralize(number_with_precision(movie.average_stars, precision: 1), "star")
     end
   end
 end

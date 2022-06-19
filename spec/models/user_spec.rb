@@ -1,9 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
-
   context "Associations" do
     it { should have_many(:reviews).dependent(:destroy) }
+    it { should have_many(:favorites).dependent(:destroy) }
+    it { should have_many(:favorite_movies) }
   end
 
   context "Validations" do

@@ -1,21 +1,21 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Review, type: :model do
-  context 'Associations' do
-    it { should belong_to(:movie)}
-    it { should belong_to(:user)}
+  context "Associations" do
+    it { should belong_to(:movie) }
+    it { should belong_to(:user) }
   end
 
-  context 'Validations' do
+  context "Validations" do
     it do
-      should validate_inclusion_of(:stars).
-        in_array(::Review::STARS).
-        with_message("must be between 1 and 5")
+      should validate_inclusion_of(:stars)
+        .in_array(::Review::STARS)
+        .with_message("must be between 1 and 5")
     end
   end
 
-  context 'Methods' do
-    it '#stars_as_percent returns a percentage' do
+  context "Methods" do
+    it "#stars_as_percent returns a percentage" do
       r = Review.new
       r.stars = 5
       expect(r.stars_as_percent).to eq(100)

@@ -8,7 +8,6 @@
     <%= time_ago_in_words(@user.created_at) %>
   </p>
   <%= render "edit_delete_buttons" %>
-
   <% if @reviews.present? %>
     <h3>Reviews</h3>
     <% @reviews.each do |review| %>
@@ -27,5 +26,13 @@
         </div>
       </div>
     <% end %>
+  <% end %>
+  <% if @favorite_movies.present? %>
+    <h3>Favorite Movies</h3>
+    <div class="favorite-movies">
+      <% @favorite_movies.each do |movie| %>
+        <%= link_to image_tag(movie.image_file_name), movie %>
+      <% end %>
+    </div>
   <% end %>
 </section>

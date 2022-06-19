@@ -1,6 +1,7 @@
 ---
 include:
 - "**/*.rb"
+- "app/views/**/*.erb"
 exclude:
 - test/**/*
 - vendor/**/*

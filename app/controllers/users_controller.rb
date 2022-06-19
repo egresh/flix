@@ -4,12 +4,13 @@ class UsersController < ApplicationController
   before_action :require_admin, only: [:destroy]
 
   def index
-    @users = User.all
+    @users = User.non_admin_users
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by!(slug: params[:id])
     @reviews = @user.reviews
+    @favorite_movies = @user.favorite_movies
   end
 
   def new

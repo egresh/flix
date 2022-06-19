@@ -1,0 +1,13 @@
+<h1>Genres</h1>
+<ul>
+  <% @genres.each do |g| %>
+    <li>
+      <h2><%= link_to g.name, genre_path(g) %></h2>
+    </li>
+  <% end %>
+</ul>
+<section class="admin">
+  <% if current_user_admin? %>
+    <%= link_to "New Genre", new_genre_path, class: "button" %>
+  <% end %>
+</section>

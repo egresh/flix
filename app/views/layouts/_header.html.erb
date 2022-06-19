@@ -3,7 +3,22 @@
     <%= link_to image_tag("logo"), root_path %>
     <ul class="left">
       <li>
-        <%= link_to "All Movies", movies_path %>
+        <%= nav_link_to "Released", movies_filter_path(:releaesd) %>
+      </li>
+      <li>
+        <%= nav_link_to "Upcoming", movies_filter_path(:upcoming) %>
+      </li>
+      <li>
+        <%= nav_link_to "Flops", movies_filter_path(:flops) %>
+      </li>
+      <li>
+        <%= nav_link_to "Hits", movies_filter_path(:hits) %>
+      </li>
+      <li>
+        <%= nav_link_to "Recent", movies_filter_path(:recent) %>
+      </li>
+      <li>
+        <%= link_to "Genres", genres_path %>
       </li>
     </ul>
     <ul class="right">

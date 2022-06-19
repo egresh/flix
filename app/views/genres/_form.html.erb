@@ -1,0 +1,10 @@
+<%= form_with(model: genre, local: true) do |f| %>
+  <%= render 'shared/errors', object: genre %>
+  <%= f.label "Genre Name" %>
+  <%= f.text_field :name, autofocus: true %>
+  &nbsp
+  <div class="characterization">
+    <%= f.collection_check_boxes(:movie_ids, movies, :id, :title) %>
+  </div>
+  <%= f.submit %>
+<% end %>

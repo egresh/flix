@@ -1,0 +1,7 @@
+<% if current_user_admin? %>
+  <% klass = object.class %>
+  <section class="admin">
+    <%= link_to "Edit", send("edit_#{klass.to_s.downcase}_path"), class: "button" %>
+    <%= link_to "Delete", send("#{klass.to_s.downcase}_path"), class: "button", method: :delete, data: {confirm: "Are you sure?"} %>
+  </section>
+<% end %>
