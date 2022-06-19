@@ -73,6 +73,7 @@ gem "pry-doc"
 
 group :development, :test do
   gem "rspec-rails"
+  gem "bundler-audit"
 end
 
 group :development do
