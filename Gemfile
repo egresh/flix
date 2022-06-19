@@ -74,6 +74,7 @@ gem "pry-doc"
 group :development, :test do
   gem "rspec-rails"
   gem "bundler-audit"
+  gem "brakeman"
 end
 
 group :development do
