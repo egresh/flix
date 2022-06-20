@@ -3,7 +3,7 @@ class Genre < ApplicationRecord
   has_many :movies, through: :characterizations
 
   before_save :generate_slug
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: {case_sensitive: false}
 
   def to_param
     slug

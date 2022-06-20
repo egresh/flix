@@ -9,20 +9,12 @@ RSpec.feature "Admin", type: :feature do
 
     scenario "movies can't be edited" do
       visit movie_path(movie)
-
-      click_link "Edit"
-
-      expect(current_path).to eq(movies_path)
-      expect(page).to have_text('Unauthorized Access')
+      expect(page).not_to have_link('Edit')
     end
 
     scenario "movies can't be destroyed" do
       visit movie_path(movie)
-
-      click_link "Delete"
-
-      expect(current_path).to eq(movies_path)
-      expect(page).to have_text('Unauthorized Access')
+      expect(page).not_to have_link('Delete')
     end
   end
 
@@ -40,7 +32,6 @@ RSpec.feature "Admin", type: :feature do
 
       click_button "Update"
 
-      expect(current_path).to eq(movie_path(movie))
       expect(page).to have_text("successfully updated")
     end
 

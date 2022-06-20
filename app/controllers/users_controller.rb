@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_signin, except: [:new, :create]
-  before_action :require_correct_user, only: [:edit, :update]
-  before_action :require_admin, only: [:destroy]
+  before_action :require_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.non_admin_users
@@ -53,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def require_correct_user
-    @user = User.find(params[:id])
+    @user = User.find_by!(slug: params[:id])
     unless @user == current_user
       redirect_to movies_url, alert: "No, no, no"
     end
