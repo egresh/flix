@@ -39,7 +39,7 @@ jobs:
         run: bin/rails db:schema:load
       # Add or replace test runners here
       - name: Create Webpack artifacts
-        run: bin/webpack
+        run: bin/rails webpacker:install
       - name: Run tests
         run: bin/rspec
 
