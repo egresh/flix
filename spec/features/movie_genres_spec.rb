@@ -27,9 +27,9 @@ RSpec.feature "Show Page Genres", type: :feature do
 
     visit edit_movie_path(movie)
 
-    check "movie_genre_ids_1"
-    check "movie_genre_ids_2"
-    check "movie_genre_ids_3"
+    check 'Comedy'
+    check 'Romance'
+    check 'Thriller'
 
     click_button "Update"
 
