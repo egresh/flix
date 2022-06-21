@@ -60,3 +60,14 @@ jobs:
         # run: bin/brakeman -q -w2
       # - name: Lint Ruby files
       #   run: bin/rubocop --parallel
+  deploy:
+    if: ${{ github.event_name == "push" && github.ref == "refs/heads/main" }}
+    needs: [test, lint]
+    runs_on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "hidden-brushlands-24758"
+          heroku_email: "earlgresh@yahoo.com"
