@@ -62,7 +62,7 @@ jobs:
       #   run: bin/rubocop --parallel
   deploy:
     if: ${{ github.event_name == "push" && github.ref == "refs/heads/main" }}
-    needs: [test, lint]
+    needs: test
     runs_on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
