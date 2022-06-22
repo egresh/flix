@@ -9,6 +9,8 @@ class Movie < ApplicationRecord
   has_many :characterizations, dependent: :destroy
   has_many :genres, through: :characterizations
 
+  has_one_attached :main_image
+
   validates :title, presence: true, uniqueness: true
   validates :released_on, :duration, presence: true
 
@@ -16,14 +18,11 @@ class Movie < ApplicationRecord
 
   validates :total_gross, numericality: {greater_than_or_equal_to: 0}
 
-  validates :image_file_name, format: {
-    with: /\w+\.(jpg|png)\z/i,
-    message: "must be a JPG or PNG image"
-  }
-
   RATINGS = %w[G PG PG-13 R NC-17]
 
   validates :rating, inclusion: {in: RATINGS}
+
+  validate :acceptable_image
 
   FLOP_AMOUNT = 225_000_000
   HIT_AMOUNT = 300_000_000
@@ -35,6 +34,20 @@ class Movie < ApplicationRecord
   scope :hits, -> { released.where("total_gross >= ?", HIT_AMOUNT).order(total_gross: :desc) }
   scope :grossed_less_than, ->(amount) { where("total_gross < ?", amount) }
   scope :grossed_greater_than, ->(amount) { where("total_gross > ?", amount) }
+
+  def acceptable_image
+    return unless main_image.attached?
+
+    if main_image.blob.byte_size >= 1.megabyte
+      errors.add(:main_image, "Image too large, max 1 megabyte")
+    end
+
+    acceptable_types = %w[image/jpeg image/png]
+
+    unless acceptable_types.include? main_image.content_type
+      errors.add(:main_image, "must be a JPEG or PNG")
+    end
+  end
 
   def to_param
     slug

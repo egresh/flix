@@ -7,6 +7,5 @@ FactoryBot.define do
     released_on { 25.years.ago }
     director { "The Coen Brothers" }
     duration { "2 hours" }
-    image_file_name { "placeholder.png" }
   end
 end

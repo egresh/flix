@@ -26,4 +26,12 @@ module MoviesHelper
       pluralize(number_with_precision(movie.average_stars, precision: 1), "star")
     end
   end
+
+  def main_image(movie)
+    if movie.main_image.attached?
+      image_tag movie.main_image.variant(resize_to_limit: [100, 100])
+    else
+      image_tag "placeholder.png"
+    end
+  end
 end

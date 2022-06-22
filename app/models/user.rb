@@ -20,7 +20,7 @@ class User < ApplicationRecord
   validate :check_password
 
   scope :non_admin_users, -> { by_name.where(admin: false) }
-  scope :admin_users, -> { by_name.where(admin: true)}
+  scope :admin_users, -> { by_name.where(admin: true) }
   scope :by_name, -> { order(name: :asc) }
 
   def to_param
