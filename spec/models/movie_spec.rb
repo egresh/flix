@@ -28,23 +28,6 @@ RSpec.describe Movie, type: :model do
       should validate_inclusion_of(:rating)
         .in_array(::Movie::RATINGS)
     end
-
-    it "image_file_name ends with .jpg or .png" do
-      m = FactoryBot.create(:movie, image_file_name: "foo.jpg")
-      m.valid?
-
-      expect(m.errors[:image_file_name]).to be_empty
-
-      m.image_file_name = "foo.png"
-      m.valid?
-
-      expect(m.errors[:image_file_name]).to be_empty
-
-      m.image_file_name = "foo.exe"
-      m.valid?
-
-      expect(m.errors[:image_file_name]).to include("must be a JPG or PNG image")
-    end
   end
 
   context "Methods" do
